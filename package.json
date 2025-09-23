@@ -1,0 +1,40 @@
+{
+  "name": "mdp-performance-dashboard",
+  "version": "1.0.0",
+  "description": "Privacy-compliant MDP Performance Dashboard with Survey and Analytics",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Build completed - static files ready\""
+  },
+  "keywords": [
+    "mdp",
+    "performance",
+    "dashboard",
+    "survey",
+    "analytics",
+    "privacy-compliant",
+    "sams-club"
+  ],
+  "author": "Sam's Club MDP Team",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "your-repository-url"
+  },
+  "homepage": "your-deployment-url"
+}
