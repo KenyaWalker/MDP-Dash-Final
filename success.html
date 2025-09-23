@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Submitted - Sam's Club</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #004990 0%, #0066cc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #004990, #0066cc, #35C4EC);
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #22c55e;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .success-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #004990;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .success-message {
+            font-size: 1.3rem;
+            color: #374151;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .close-instruction {
+            font-size: 0.95rem;
+            color: #9ca3af;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #004990;
+        }
+
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 3rem 2rem;
+                margin: 1rem;
+            }
+
+            .success-title {
+                font-size: 2rem;
+            }
+
+            .success-message {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                width: 100px;
+            }
+        }
+
+        /* Subtle animation */
+        .success-container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            animation: bounceIn 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #004990, #0066cc);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 73, 144, 0.3);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #003875, #0052a3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 73, 144, 0.4);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="success-container">
+        <img src="SC_Logo_Symbol_RGB_WHT.png" alt="Sam's Club" class="logo" style="filter: brightness(0) saturate(100%) invert(13%) sepia(91%) saturate(2588%) hue-rotate(205deg) brightness(95%) contrast(101%);">
+        
+        <div class="success-icon">✓</div>
+        
+        <h1 class="success-title">Survey Submitted Successfully!</h1>
+        
+        <p class="success-message">Thank you for your evaluation!</p>
+        
+        <p class="subtitle">Your feedback helps us improve the Merchandising Development Program experience.</p>
+        
+        <button class="download-btn" onclick="downloadResponsesPDF()">📄 Download My Responses as PDF</button>
+        
+        <div class="close-instruction">
+            You may now close this page or browser tab.
+        </div>
+    </div>
+
+    <script>
+        // Get survey data from URL parameters or localStorage
+        function getSurveyData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const surveyData = {
+                mdpName: urlParams.get('mdpName') || localStorage.getItem('survey_mdpName') || 'Not specified',
+                functionName: urlParams.get('functionName') || localStorage.getItem('survey_functionName') || 'Not specified',
+                manager: urlParams.get('manager') || localStorage.getItem('survey_manager') || 'Not specified',
+                rotation: urlParams.get('rotation') || localStorage.getItem('survey_rotation') || 'Not specified',
+                submittedAt: urlParams.get('submittedAt') || localStorage.getItem('survey_submittedAt') || new Date().toISOString(),
+                responses: {}
+            };
+
+            // Get question responses from localStorage if available
+            for (let i = 1; i <= 10; i++) {
+                const response = localStorage.getItem(`survey_Q${i}`);
+                if (response) {
+                    surveyData.responses[`Q${i}`] = parseInt(response);
+                }
+            }
+
+            // Calculate scores if responses available
+            if (Object.keys(surveyData.responses).length > 0) {
+                const q1to3 = [1,2,3].map(i => surveyData.responses[`Q${i}`] || 0);
+                const q4to6 = [4,5,6].map(i => surveyData.responses[`Q${i}`] || 0);
+                const q7to8 = [7,8].map(i => surveyData.responses[`Q${i}`] || 0);
+                const q9to10 = [9,10].map(i => surveyData.responses[`Q${i}`] || 0);
+
+                surveyData.scores = {
+                    jobKnowledge: q1to3.reduce((a,b) => a+b) / 3,
+                    qualityOfWork: q4to6.reduce((a,b) => a+b) / 3,
+                    communication: q7to8.reduce((a,b) => a+b) / 2,
+                    initiative: q9to10.reduce((a,b) => a+b) / 2,
+                };
+                surveyData.scores.overall = Object.values(surveyData.scores).reduce((a,b) => a+b) / 4;
+            }
+
+            return surveyData;
+        }
+
+        function formatNameForPrivacy(fullName) {
+            if (!fullName || fullName === 'Anonymous' || fullName === 'N/A') {
+                return fullName;
+            }
+            
+            const nameParts = fullName.trim().split(' ');
+            if (nameParts.length === 1) {
+                return nameParts[0];
+            }
+            
+            const firstName = nameParts[0];
+            const lastNameInitial = nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+            return `${firstName} ${lastNameInitial}.`;
+        }
+        
+        function downloadResponsesPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const surveyData = getSurveyData();
+            
+            // Questions mapping
+            const questions = {
+                'Q1': 'Demonstrates technical skills and knowledge relevant to their function',
+                'Q2': 'Seeks out information and resources to solve problems',
+                'Q3': 'Applies learning from previous experiences to new situations',
+                'Q4': 'Produces work that meets or exceeds expectations',
+                'Q5': 'Pays attention to detail and accuracy',
+                'Q6': 'Takes ownership and accountability for their work',
+                'Q7': 'Communicates effectively with team members and stakeholders',
+                'Q8': 'Collaborates well with others and contributes to team success',
+                'Q9': 'Takes initiative and identifies opportunities for improvement',
+                'Q10': 'Manages time effectively and meets deadlines'
+            };
+
+            // Header
+            doc.setFontSize(20);
+            doc.setTextColor(0, 73, 144); // Sam's Club blue
+            doc.text('MDP Performance Evaluation Results', 20, 30);
+            
+            // Participant Info
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Associate: ${formatNameForPrivacy(surveyData.mdpName)}`, 20, 50);
+            doc.text(`Function: ${surveyData.functionName}`, 20, 60);
+            doc.text(`Manager: ${formatNameForPrivacy(surveyData.manager)}`, 20, 70);
+            doc.text(`Rotation: ${surveyData.rotation}`, 20, 80);
+            doc.text(`Date: ${new Date(surveyData.submittedAt).toLocaleDateString()}`, 20, 90);
+
+            // Scores Section
+            if (surveyData.scores) {
+                doc.setFontSize(14);
+                doc.setTextColor(0, 73, 144);
+                doc.text('Performance Scores', 20, 110);
+                
+                doc.setFontSize(10);
+                doc.setTextColor(0, 0, 0);
+                let yPos = 125;
+                doc.text(`Job Knowledge: ${surveyData.scores.jobKnowledge.toFixed(1)}/5.0`, 20, yPos);
+                doc.text(`Quality of Work: ${surveyData.scores.qualityOfWork.toFixed(1)}/5.0`, 20, yPos + 10);
+                doc.text(`Communication & Teamwork: ${surveyData.scores.communication.toFixed(1)}/5.0`, 20, yPos + 20);
+                doc.text(`Initiative & Productivity: ${surveyData.scores.initiative.toFixed(1)}/5.0`, 20, yPos + 30);
+                doc.text(`Overall Score: ${surveyData.scores.overall.toFixed(1)}/5.0`, 20, yPos + 45);
+                yPos += 65;
+            } else {
+                let yPos = 110;
+            }
+
+            // Questions and Responses
+            doc.setFontSize(14);
+            doc.setTextColor(0, 73, 144);
+            doc.text('Detailed Responses', 20, surveyData.scores ? 185 : 110);
+            
+            doc.setFontSize(9);
+            doc.setTextColor(0, 0, 0);
+            let currentY = surveyData.scores ? 200 : 125;
+            
+            Object.keys(questions).forEach((qKey, index) => {
+                if (currentY > 270) {
+                    doc.addPage();
+                    currentY = 30;
+                }
+                
+                const response = surveyData.responses[qKey] || 'Not answered';
+                const questionText = `Q${index + 1}: ${questions[qKey]}`;
+                const responseText = `Response: ${response}/5`;
+                
+                // Split long questions into multiple lines
+                const lines = doc.splitTextToSize(questionText, 170);
+                lines.forEach((line, lineIndex) => {
+                    doc.text(line, 20, currentY);
+                    currentY += 5;
+                });
+                
+                doc.text(responseText, 20, currentY);
+                currentY += 15;
+            });
+
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(128, 128, 128);
+            doc.text('Generated by MDP Performance Dashboard', 20, doc.internal.pageSize.height - 15);
+            doc.text(new Date().toLocaleString(), 20, doc.internal.pageSize.height - 10);
+
+            // Download
+            const fileName = `MDP_Evaluation_${surveyData.mdpName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
+            doc.save(fileName);
+        }
+
+        // Store survey data if passed via URL
+        window.addEventListener('load', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('mdpName')) {
+                ['mdpName', 'functionName', 'manager', 'rotation', 'submittedAt'].forEach(param => {
+                    const value = urlParams.get(param);
+                    if (value) localStorage.setItem(`survey_${param}`, value);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
