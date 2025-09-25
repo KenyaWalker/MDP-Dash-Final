@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDP System Launcher</title>
+    <style>
+        :root {
+            --primary: #0062AD;
+            --secondary: #00358E;
+            --tertiary: #11224B;
+            --accent1: #35C4EC;
+            --white: #FFFFFF;
+            --light: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--white);
+            padding: 2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .launcher-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .launcher-header {
+            background: var(--tertiary);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .launcher-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .launcher-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .launcher-content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--tertiary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .link-card {
+            background: var(--light);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .link-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--tertiary);
+            margin-bottom: 0.5rem;
+        }
+
+        .link-description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .link-url {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+
+        .status {
+            text-align: center;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .status-good {
+            color: #28a745;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-container">
+        <div class="launcher-header">
+            <img src="SC_Logo_Symbol_RGB_WHT.png" alt="Sam's Club" style="height: 40px; margin-bottom: 1rem;">
+            <h1>MDP System Launcher</h1>
+            <p>Quick access to all your MDP tools</p>
+        </div>
+
+        <div class="launcher-content">
+            <div class="section">
+                <h2>🌐 Live System (Railway)</h2>
+                <div class="link-grid">
+                    <a href="https://web-production-ffe6f.up.railway.app/" class="link-card" target="_blank">
+                        <div class="link-title">Survey Form</div>
+                        <div class="link-description">Main entry point for managers to submit evaluations</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/</div>
+                    </a>
+
+                    <a href="https://web-production-ffe6f.up.railway.app/dashboard.html" class="link-card" target="_blank">
+                        <div class="link-title">Performance Dashboard</div>
+                        <div class="link-description">Real-time analytics and performance metrics</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/dashboard.html</div>
+                    </a>
+
+                    <a href="https://web-production-ffe6f.up.railway.app/admin.html" class="link-card" target="_blank">
+                        <div class="link-title">Survey Manager</div>
+                        <div class="link-description">Admin panel to view, filter, and export responses</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/admin.html</div>
+                    </a>
+
+                    <a href="https://web-production-ffe6f.up.railway.app/success.html" class="link-card" target="_blank">
+                        <div class="link-title">Success Page</div>
+                        <div class="link-description">Confirmation page after survey submission</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/success.html</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💻 Local Files</h2>
+                <div class="link-grid">
+                    <a href="file:///c:/Users/k0w0d6u/OneDrive%20-%20Walmart%20Inc/MDP%20Dash%20Final/MDPDashFinalV-main/index.html" class="link-card">
+                        <div class="link-title">Survey Form (Local)</div>
+                        <div class="link-description">Local development version</div>
+                        <div class="link-url">index.html</div>
+                    </a>
+
+                    <a href="file:///c:/Users/k0w0d6u/OneDrive%20-%20Walmart%20Inc/MDP%20Dash%20Final/MDPDashFinalV-main/dashboard.html" class="link-card">
+                        <div class="link-title">Dashboard (Local)</div>
+                        <div class="link-description">Local development version</div>
+                        <div class="link-url">dashboard.html</div>
+                    </a>
+
+                    <a href="file:///c:/Users/k0w0d6u/OneDrive%20-%20Walmart%20Inc/MDP%20Dash%20Final/MDPDashFinalV-main/admin.html" class="link-card">
+                        <div class="link-title">Survey Manager (Local)</div>
+                        <div class="link-description">Local development version</div>
+                        <div class="link-url">admin.html</div>
+                    </a>
+
+                    <a href="file:///c:/Users/k0w0d6u/OneDrive%20-%20Walmart%20Inc/MDP%20Dash%20Final/MDPDashFinalV-main/success.html" class="link-card">
+                        <div class="link-title">Success Page (Local)</div>
+                        <div class="link-description">Local development version</div>
+                        <div class="link-url">success.html</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>🔗 API Endpoints</h2>
+                <div class="link-grid">
+                    <a href="https://web-production-ffe6f.up.railway.app/api/survey-responses" class="link-card" target="_blank">
+                        <div class="link-title">Survey Responses Data</div>
+                        <div class="link-description">Raw JSON data of all survey responses</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/api/survey-responses</div>
+                    </a>
+
+                    <a href="https://web-production-ffe6f.up.railway.app/api/dashboard-data" class="link-card" target="_blank">
+                        <div class="link-title">Dashboard Data</div>
+                        <div class="link-description">Processed dashboard metrics and analytics</div>
+                        <div class="link-url">https://web-production-ffe6f.up.railway.app/api/dashboard-data</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="status">
+                <div class="status-good">✅ System Status: All components operational</div>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;">
+                    Last Updated: September 24, 2025 | 2 Survey Responses Active
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
