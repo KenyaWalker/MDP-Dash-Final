@@ -5,14 +5,52 @@
     "functionName": "Planning",
     "manager": "Michelle Roszel",
     "rotation": 1,
-    // ... rest of the survey data
+    "responses": {
+      "Q1": 5,
+      "Q2": 5,
+      "Q3": 3,
+      "Q4": 5,
+      "Q5": 5,
+      "Q6": 5,
+      "Q7": 5,
+      "Q8": 5,
+      "Q9": 5,
+      "Q10": 5
+    },
+    "submittedAt": "2025-09-24T19:05:07.251Z",
+    "emailResponse": false,
+    "respondentEmail": null,
+    "jobKnowledge": 4.6,
+    "qualityOfWork": 5,
+    "communication": 5,
+    "initiative": 5,
+    "overall": 4.8
   },
   {
     "id": "1758742421416",
-    "mdpName": "Ryan Thomas", 
+    "mdpName": "Ryan Thomas",
     "functionName": "Planning",
     "manager": "Candace Norfleet",
     "rotation": 1,
-    // ... rest of the survey data
+    "responses": {
+      "Q1": 5,
+      "Q2": 5,
+      "Q3": 3,
+      "Q4": 5,
+      "Q5": 5,
+      "Q6": 5,
+      "Q7": 5,
+      "Q8": 5,
+      "Q9": 5,
+      "Q10": 5
+    },
+    "submittedAt": "2025-09-24T19:33:41.416Z",
+    "emailResponse": false,
+    "respondentEmail": null,
+    "jobKnowledge": 4.6,
+    "qualityOfWork": 5,
+    "communication": 5,
+    "initiative": 5,
+    "overall": 4.8
   }
 ]
